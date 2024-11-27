@@ -20,5 +20,7 @@ typedef struct func_type
 } func_t;
 
 int _printf(const char *format, ...);
+int (*get_func(const char *format))(va_list);
+int _putchar(char c);
 
 #endif
