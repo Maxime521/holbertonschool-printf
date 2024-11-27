@@ -1,51 +1,61 @@
-#include <stdarg.h>
 #include "main.h"
 
 /**
- *_printf - prints to output according to format
- *@format: character string
- *
- *Return: number of characters printed
+ * print_str - Fonction that print string,
+ * following conversion specifiers %c, %s, %%
+ * @format: number of arguments
+ * Return: len
  */
 
 int _printf(const char *format, ...)
 {
-	int i = 0, j = 0;
-	int (*f)(va_list);
-	va_list args;
+	int x;
+	int y;
+	int len = 0;
+	char *str;
 
-	va_start(args, format);
-	if (format == NULL || !format[i + 1])
-		return (-1);
-	while (format[i])
+	va_list arg;
+	va_start(arg, format);
+
+
+	if (format == NULL)
 	{
-		if (format[i] == '%')
+		return (-1);
+	}
+	for (x = 0; format[x] != '\0' ; x++)
+	{
+		if (format[x] == '%' && format[x + 1] == 's')
 		{
-			if (format[i + 1])
+			str = va_arg(arg, char *);
 			{
-				if (format[i + 1] != 'c' && format[i + 1] != 's'
-				&& format[i + 1] != '%' && format[i + 1] != 'd'
-				&& format[i + 1] != 'i')
+				if (str != NULL)
 				{
-					j += _putchar(format[i]);
-					j += _putchar(format[i + 1]);
-					i++;
+					for (y = 0; str[y] != '\0'; y++)
+					{
+						_putchar(str[y]);
+						len++;
+					}
 				}
-				else
+				else if (str == NULL)
 				{
-					f = get_func(&format[i + 1]);
-					j += f(args);
-					i++;
+					return (-1);
 				}
 			}
 		}
+		else if (format[x] == '%' && format[x + 1] == '%')
+		{
+			_putchar('%');
+			len++;
+
+		}
 		else
 		{
-			_putchar(format[i]);
-			j++;
+			_putchar(format[x]);
+			{
+				len++;
+			}
 		}
-		i++;
 	}
-	va_end(args);
-	return (j);
+	va_end(arg);
+	return(len);
 }
