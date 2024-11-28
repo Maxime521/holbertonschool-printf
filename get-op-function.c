@@ -18,9 +18,9 @@ int (*get_op_function(char specifier))(va_list)
 		{"i", print_integer},
 		{NULL, NULL}
 	};
-	while (ops[i].get_op_function)
+	while (ops[i].specifier)
 	{
-		if (*(ops[i].get_op_function) == get_op_function)
+		if (*(ops[i].specifier) == specifier)
 			return (ops[i].func);
 		i++;
 	}
