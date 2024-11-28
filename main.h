@@ -4,9 +4,6 @@
 #include <stdarg.h>
 #include <stddef.h>
 #include <unistd.h>
-#include <stdlib.h>
-#include <limits.h>
-#include <string.h>
 
 /**
  * struct op - structure to map a specifier to its function
@@ -27,6 +24,5 @@ int print_char(va_list args);
 int print_string(va_list args);
 int print_percent(va_list args);
 int print_integer(va_list args);
-int print_dec(va_list args);
 
 #endif
