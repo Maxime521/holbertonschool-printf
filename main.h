@@ -2,6 +2,9 @@
 #define MAIN_H
 
 #include <stdarg.h>
+#include <stddef.h>
+#include <unistd.h>
+
 /**
  * struct op - structure to map a specifier to its function
  * @specifier: the specifier
@@ -15,7 +18,7 @@ typedef struct op
 
 int _putchar(char c);
 int _printf(const char *format, ...);
-int specifier(const char charac, va_list args);
+int (*get_op_function(char specifier))(va_list);
 int print_char(va_list args);
 int print_string(va_list args);
 int print_percent(va_list args);
