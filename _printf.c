@@ -23,7 +23,7 @@ int _printf(const char *format, ...)
 	{
 		if (format[i] == '%')
 		{
-			len += specifier(format[i + 1], args);
+			len += get_op_function(format[i + 1], args);
 			i += 2;
 		}
 		else
