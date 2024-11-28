@@ -7,7 +7,7 @@
  *
  * Return: Pointer to the corresponding function or nill if not found
  */
-int (*get_op_function(char specifier))(va_list)
+int specifier(const char charac, va_list args)
 {
 	int i = 0;
 	op_t ops[] = {
