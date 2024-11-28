@@ -2,61 +2,38 @@
 #include <stddef.h>
 
 /**
- * print_str - Fonction that print string,
- * following conversion specifiers %c, %s, %%
- * @format: number of arguments
- * Return: len
+ * _printf - function that produce outpout according to a format.
+ * @format:  a character string
+ *
+ * Return: Always succcess
  */
-
 int _printf(const char *format, ...)
 {
-	int x;
-	int y;
-	int len = 0;
-	char *str;
+	int i = 0, len = 0;
+	va_list args;
 
-	va_list arg;
-	va_start(arg, format);
+	va_start(args, format);
 
-
-	if (format == NULL)
-	{
+	if (!format || (format[0] == '%' && !format[1]))
 		return (-1);
-	}
-	for (x = 0; format[x] != '\0' ; x++)
-	{
-		if (format[x] == '%' && format[x + 1] == 's')
-		{
-			str = va_arg(arg, char *);
-			{
-				if (str != NULL)
-				{
-					for (y = 0; str[y] != '\0'; y++)
-					{
-						_putchar(str[y]);
-						len++;
-					}
-				}
-				else if (str == NULL)
-				{
-					return (-1);
-				}
-			}
-		}
-		else if (format[x] == '%' && format[x + 1] == '%')
-		{
-			_putchar('%');
-			len++;
 
+	if format[0] == '%' && format[1] == ' ' && !format[2])
+		return (-1);
+
+	while (format[i])
+	{
+		if (format[i] == '%')
+		{
+			len += specifier(format[i + 1], args);
+			i += 2;
 		}
 		else
 		{
-			_putchar(format[x]);
-			{
-				len++;
-			}
+			len++;
+			_putchar(format[i]);
+			i++;
 		}
 	}
-	va_end(arg);
-	return(len);
+	va_end(args);
+	return (len);
 }
