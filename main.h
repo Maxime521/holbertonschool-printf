@@ -3,19 +3,20 @@
 
 #include <stdarg.h>
 /**
- * struct op - structure to map a specifier to its function
+ * struct print_func - structure to map specifiers to
+ * their corresponding functions.
  * @specifier: the specifier
- * @func: Pointer to the funtion that manages the specifier
+ * @func: The function pointer to handle the specifier
  */
-typedef struct op
+typedef struct print_func
 {
 	char *specifier;
-	int (*func)(va_list args);
-} op_t;
+	int (*func)(va_list);
+} print_func;
 
 int _putchar(char c);
 int _printf(const char *format, ...);
-int (*get_op_function(char specifier))(va_list);
+int get_specifier(const char c, va_list args);
 int print_char(va_list args);
 int print_string(va_list args);
 int print_percent(va_list args);
