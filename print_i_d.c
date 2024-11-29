@@ -23,7 +23,7 @@ int print_i_d(va_list args)
 
 	if (tmp_num == 0)
 	{
-		_putchar("0");
+		_putchar('0');
 		return (len + 1);
 	}
 
