@@ -4,6 +4,9 @@
 #include <stdarg.h>
 #include <stddef.h>
 #include <unistd.h>
+#include <stdlib.h>
+#include <limits.h>
+#include <string.h>
 
 /**
  * struct op - structure to map a specifier to its function
