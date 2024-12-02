@@ -7,7 +7,7 @@
  *
  * Return: Pointer to the corresponding function or nill if not found
  */
-int get_specifier(char specifier)(va_list)
+int (*get_specifier(char specifier))(va_list)
 {
 	int i = 0;
 	op_t ops[] = {
