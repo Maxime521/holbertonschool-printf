@@ -1,14 +1,13 @@
 #include "main.h"
 #include <stddef.h>
-
 /**
- * get_specifier - Matches a character with the correct print function.
- * @c: the character after '%' to identify the specifier.
- * @args: The arguments list to process.
+ * get_specifier - Returns a function corresponding to a specifier
+ * @specifier: The format specifier
+ * @args: Lists of arguments
  *
- * Return: Number of characters printed if a match is found, else 2.
+ * Return: Pointer to the corresponding function nill if not found
  */
-int get_specifier(const char c, va_list args)
+int get_specifier(char specifier, va_list args)
 {
 	int i = 0;
 
@@ -16,18 +15,15 @@ int get_specifier(const char c, va_list args)
 		{"c", print_char},
 		{"s", print_string},
 		{"%", print_percent},
-		{"d", print_integer},
-		{"i", print_integer},
+		{"d", print_i_d},
+		{"i", print_i_d},
 		{NULL, NULL}
 	};
-	while (specifiers[i].specifier)
+	while (ops[i].specifier)
 	{
-		if (c == *specifiers[i].specifier)
-			return (specifiers[i].func(args));
+		if (*(ops[i].specifier) == specifier)
+			return (ops[i].func(args));
 		i++;
 	}
-	_putchar('%');
-	_putchar(c);
-
-	return (2);
+	return (0);
 }
