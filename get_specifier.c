@@ -4,6 +4,7 @@
 /**
  * get_specifier - Returns a function corresponding to a specifier
  * @specifier: The format specifier
+ * @args: lists of arguments
  *
  * Return: Pointer to the corresponding function or nill if not found
  */
