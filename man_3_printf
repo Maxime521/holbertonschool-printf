@@ -1,0 +1,72 @@
+.TH _PRINTF 3 "November , 2024" "Holberton school project"
+.SH NAME
+_printf \- formatted output conversion
+
+.SH SYNOPSIS
+.B #include "main.h"
+
+.BI "int _printf(const cchar *format, ...);"
+
+.SH DESCRIPTION
+The
+.B _printf
+function produces outpout according to a format as described below.The
+.B format
+string is a character string, beginning and ending in its initial shift state, if any. The
+.B format
+string is composed of zero or more directives: ordinary characters (not '%') which are copied unchanged to the outpout stream, and conversion specifications, each of which results in fetching zero more subsequearguments.
+
+The arguments must be provided in the order required by the format string. The function fandles the following format specifiers:
+
+.TP
+.B %c
+Prints a single character.
+.TP
+.B %s
+Prints a string of characters.
+.TP
+.B %
+Prints a percent
+.TP
+.B %d, %i
+Prints a signed decimal integer.
+
+.SH RETURN VALUE
+The
+.B _printf
+function returns
+.B -1
+if:
+.IP
+- The
+.B format
+String is NULL.
+.IP
+- A conversion specification is invalid
+
+.SH EXAMPLES
+.B Example 1:
+Printing a string and a number:
+.PP
+.EX
+#include "main.h"
+
+int main(void)
+{
+int len;
+
+len = _printf("HELLO, %s! You are %d years old.\n", "Bob", 25);
+_printf("Printed %d characters.\n", len);
+
+return (0);
+}
+.EE
+.PP
+
+.SH SEE ALSO
+.BR printf (3),
+.BR putchar (3),
+.BR stdarg (3)
+
+.SH AUTHOR
+Written by Madjiguene Elodie Mbaye and Maxime marty
