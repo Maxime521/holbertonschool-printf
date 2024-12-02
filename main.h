@@ -21,13 +21,12 @@ typedef struct op
 
 int _putchar(char c);
 int _printf(const char *format, ...);
-int specifier(char c, va_list args);
-int (*get_op_function(char specifier))(va_list);
+int get_specifier(char c, va_list args);
 int print_char(va_list args);
 int print_string(va_list args);
 int print_percent(va_list args);
-int print_integer(va_list args);
 int print_i_d(va_list args);
+int get_specifier(char specifier, va_list args);
 
 
 #endif

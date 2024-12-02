@@ -7,22 +7,22 @@
  *
  * Return: Pointer to the corresponding function or nill if not found
  */
-int (*get_specifier(char specifier))(va_list)
+int get_specifier(char specifier, va_list args)
 {
 	int i = 0;
 	op_t ops[] = {
 		{"c", print_char},
 		{"s", print_string},
 		{"%", print_percent},
-		{"d", print_integer},
-		{"i", print_integer},
+		{"d", print_i_d},
+		{"i", print_i_d},
 		{NULL, NULL}
 	};
 	while (ops[i].specifier)
 	{
 		if (*(ops[i].specifier) == specifier)
-			return (ops[i].func);
+			return (ops[i].func(args));
 		i++;
 	}
-	return (NULL);
+	return (0);
 }
