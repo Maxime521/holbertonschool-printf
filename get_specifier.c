@@ -10,8 +10,7 @@
 int get_specifier(char specifier, va_list args)
 {
 	int i = 0;
-
-	print_func specifiers[] = {
+	op_t ops[] = {
 		{"c", print_char},
 		{"s", print_string},
 		{"%", print_percent},
