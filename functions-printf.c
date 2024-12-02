@@ -21,14 +21,17 @@ int print_char(va_list args)
 int print_string(va_list args)
 {
 	char *str = va_arg(args, char *);
-	int i;
+	int len = 0;
 
 	if (!str)
 		str = "(null)";
 
-	for (i = 0; str[i]; i++)
-		_putchar(str[i]);
-	return (i);
+	while (*str)
+	{
+		_putchar(*str++);
+		len++;
+	}
+	return (len);
 }
 /**
  * print_percent - displays a character '%'
@@ -43,33 +46,37 @@ int print_percent(va_list args)
 	return (1);
 }
 /**
- * print_integer - display an integer
- * @args: List of arguments
- *
- * Return: number of arguments not used
+ * print_i_d - prints integer
+ * @args: list of arguments
+ * Return: int , lenght
  */
-int print_integer(va_list args)
+int print_i_d(va_list args)
 {
-	long int temp, value = va_arg(args, int);
-	int multiplier = 1, char_count = 0;
+	int arg = va_arg(args, int);
+	int power = 1, len = 0;
+	unsigned int tmp_num;
 
-	if (value < 0)
+	if (arg < 0)
 	{
-		char_count += _putchar('-');
-		value = -value;
+		_putchar('-');
+		arg *= -1;
+		len++;
 	}
-	if (value < 10)
-		return (char_count += _putchar(value + '0'));
-	temp = value;
-	while (temp > 9)
+	tmp_num = arg;
+
+	if (tmp_num == 0)
 	{
-		multiplier *= 10;
-		temp /= 10;
+		_putchar('0');
+		return (len + 1);
 	}
-	while (multiplier >= 1)
+	while (tmp_num / power >= 10)
+		power *= 10;
+	while (power > 0)
 	{
-		char_count += _putchar(((value / multiplier) % 10) + '0');
-		multiplier /= 10;
+		_putchar((tmp_num / power) + '0');
+		tmp_num %= power;
+		power /= 10;
+		len++;
 	}
-	return (char_count);
+	return (len);
 }
