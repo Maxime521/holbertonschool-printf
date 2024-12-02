@@ -1,39 +1,36 @@
 #include "main.h"
 /**
- * print_dec - prints decimal
- * @args: the argument decimal
- *
- * Return: counter
+ * print_i_d - prints integer
+ * @args: list of arguments
+ * Return: int , lenght
  */
-
-int print_dec(va_list args)
+int print_i_d(va_list args)
 {
-	int value;
-	unsigned int abs, a, len;
-	unsigned int countn = 1;
+	int arg = va_arg(args, int);
+	int power = 1, len = 0;
+	unsigned int tmp_num;
 
-	len = 0;
-
-	value = va_arg(args, int);
-
-	if (value < 0)
+	if (arg < 0)
 	{
-		len = len + _putchar('-');
-		abs = value * -1;
+		_putchar('-');
+		arg *= -1;
+		len++;
 	}
-	else
-		abs = value;
+	tmp_num = arg;
 
-	a = abs;
-	while (a > 9)
+	if (tmp_num == 0)
 	{
-		a = a / 10;
-		countn = countn * 10;
+		_putchar('0');
+		return (len + 1);
 	}
-	while (countn >= 1)
+	while (tmp_num / power >= 10)
+		power *= 10;
+	while (power > 0)
 	{
-		len = len + _putchar(((abs / countn) % 10) + '0');
-		countn = countn / 10;
+		_putchar((tmp_num / power) + '0');
+		tmp_num %= power;
+		power /= 10;
+		len++;
 	}
 	return (len);
 }
